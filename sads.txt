@@ -3,19 +3,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title> 로그인 폼 생성 </title>
+	<meta charset="UTF-8">
+	<title> 세션 생성 </title>
 </head>
 <body>
-	Home > 로그인 폼 화면
+	Home > 세션 생성하기
 	<hr>
-	<form name="loginForm" action="test06_04_02.jsp" 
-		method="post">
-		아이디 : <br> 
-		<input type="text" name="id"><br><br>
-		비밀번호 : <br> 
-		<input type="password" name="passwd"><br><br>		
-		<input type="submit" value=" 로그인 ">
-	</form>
+	<%
+		String u_id = request.getParameter("id");
+		String u_pw = request.getParameter("passwd");
+		
+		if(u_id.equals("김태리") && u_pw.equals("123456"))
+		{
+			session.setAttribute("memberId", u_id);
+			session.setAttribute("memberPw", u_pw);
+			
+			out.println("새로운 세션 생성 성공 ! <br>");
+			out.println("[ " + u_id + " ]님이 입장하였습니다. ");
+		}
+		else
+		{
+			out.println("세션 생성 실패 ! <br>");
+			out.println("다시 시도해 보세요.");
+		}
+	%>
 </body>
 </html>

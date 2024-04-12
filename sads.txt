@@ -9,17 +9,21 @@
 <body>
 	Home > 세션 생성하기
 	<hr>
-	<%
+	<%	
 		String u_id = request.getParameter("id");
 		String u_pw = request.getParameter("passwd");
+		long time = session.getLastAccessedTime();
+		String pattern = ＂yyyy-MM-dd HH:mm"; 
+		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 		
-		if(u_id.equals("김태리") && u_pw.equals("123456"))
+		if(u_id.equals("rladudtjd") && u_pw.equals("123456"))
 		{
 			session.setAttribute("memberId", u_id);
 			session.setAttribute("memberPw", u_pw);
 			
 			out.println("새로운 세션 생성 성공 ! <br>");
-			out.println("[ " + u_id + " ]님이 입장하였습니다. ");
+			out.println("[ " + u_id + " ]님 환영합니다.<br> ");
+			out.println("세션에 접속한 마지막 일시 : ["+ sdf.format(time) +"]");
 		}
 		else
 		{
